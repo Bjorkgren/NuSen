@@ -61,7 +61,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="left"
             android:fontFamily="@font/compact_vegverket"
             android:textColor="#fff"
             android:background="@color/colorSkylt"
@@ -72,7 +72,7 @@
             app:autoSizeMaxTextSize="100sp"
             app:autoSizeStepGranularity="2sp"
 
-            android:text="VEBERÖD" />
+            android:text=" NU" />
         </LinearLayout>
 
 
