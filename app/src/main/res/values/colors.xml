@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ddd</color>
-    <color name="colorPrimaryDark">#ddd</color>
+    <color name="colorPrimary">#a0a5a8</color>
+    <color name="colorPrimaryDark">#a0a5a8</color>
     <color name="colorAccent">#002F6C</color>
     <color name="colorSkylt">#005192</color>
+    <color name="colorVegverkGrey">#a0a5a8</color>
+    <color name="colorVegverkGreen">#00755c</color>
+    <color name="colorVegverkDarkblue">#041e42</color>
+    <!-- c6ccd0 -->
+    <!--      a0a5a8   #7c878e    -->
 </resources>
