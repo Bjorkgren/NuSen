@@ -10,6 +10,7 @@ Android app that displays local weather both now ("nu") and later ("sen").
 * Can set relevant times (ex. 7:00 - 22:00)
 
 ### Providers
+(not affiliated)
 * SMHI.se
 * YR.no
 * FMI.fi
