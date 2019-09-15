@@ -1,4 +1,7 @@
-# NuSen
+# NuSen 
+
+![GitHub top language](https://img.shields.io/github/languages/top/Bjorkgren/NuSen)
+![GitHub last commit](https://img.shields.io/github/last-commit/Bjorkgren/NuSen) 
 
 Android app that displays local weather both now ("nu") and later ("sen").
 
@@ -11,6 +14,10 @@ Android app that displays local weather both now ("nu") and later ("sen").
 
 ### Providers
 (not affiliated)
+
+```java
+//TODO: Test if fmi and weather.gov return actual data, not just test data.
+```
 * SMHI.se
 * YR.no
 * FMI.fi
