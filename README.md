@@ -1,6 +1,8 @@
-# NuSen ![GitHub last commit](https://img.shields.io/github/last-commit/Bjorkgren/NuSen)
+# NuSen 
 
 Android app that displays local weather both now ("nu") and later ("sen").
+
+![GitHub last commit](https://img.shields.io/github/last-commit/Bjorkgren/NuSen) ![GitHub top language](https://img.shields.io/github/languages/top/Bjorkgren/NuSen)
 
 ## Has
 
