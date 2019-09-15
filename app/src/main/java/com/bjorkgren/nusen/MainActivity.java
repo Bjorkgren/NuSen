@@ -4,12 +4,18 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Looper;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,11 +23,13 @@ import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bjorkgren.nusen.communication.PlacenameFromPositionTask;
 import com.bjorkgren.nusen.model.PlacenameListener;
+import com.bjorkgren.nusen.model.Weather;
 
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 
@@ -33,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     LocationListener locationListener;
 
     TextView skylt;
+    ConstraintLayout mainLayout;
+    int colorSun, colorRain, colorCloudy;
+    int colorPrimary;
 
     @Override
     protected void onResume() {
@@ -67,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
         if ( Build.VERSION.SDK_INT >= 23)
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
+        colorCloudy = getResources().getColor(R.color.gradientCloudy);
+        colorSun = getResources().getColor(R.color.gradientSun);
+        colorRain = getResources().getColor(R.color.gradientRain);
+        colorPrimary = getResources().getColor(R.color.colorPrimary);
+
+
+
         skylt = findViewById(R.id.skylt);
         skylt.post(new Runnable() {
             @Override
@@ -81,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 skylt.setLayoutParams(layoutParams);
             }
         });
+
+        mainLayout = findViewById(R.id.main_layout);
+        setWeatherSen(Weather.CLOUDY);
 
         locationListener = new LocationListener() {
             @Override
@@ -143,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFound(String p) {
                 skylt.setText("\u00A0" + p.toUpperCase() + "\u00A0");
-                updateSkyltSize();
+                //setWeatherSen(Weather.CLOUDY);
                 //preferences.edit().putString(PLACENAME_SAVED, p).apply();
             }
 
@@ -154,16 +175,39 @@ public class MainActivity extends AppCompatActivity {
         }).executeOnExecutor(THREAD_POOL_EXECUTOR, loc );
     }
 
+    private void setWeatherSen(Weather w){
+        int end;
+        switch (w){
+            case SUN:
+                end = colorSun;
+                break;
+            case RAIN:
+                end = colorRain;
+                break;
+            case CLOUDY:
+                end = colorCloudy;
+                break;
+            default:
+                return;
+        }
+        int colors[] = {colorPrimary, end};
+        GradientDrawable gd = new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM, colors);
+
+        gd.setCornerRadius(3f);
+        mainLayout.setBackground(gd);
+    }
+/*
     private void updateSkyltSize(){
         TextPaint textPaint = new TextPaint();
         textPaint.setTextSize(skylt.getTextSize());
 
-        float width = textPaint.measureText(skylt.getText().toString());
+        float width = textPaint.measureText((skylt.getText()).toString());
 
         ViewGroup.LayoutParams layoutParams = skylt.getLayoutParams();
         layoutParams.width = (int)width;
         skylt.setLayoutParams(layoutParams);
-    }
+    } */
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -177,6 +221,10 @@ public class MainActivity extends AppCompatActivity {
                 requestLocationOnce();
             }
         }
+    }
+
+    public void showSettings(View v){
+        startActivity(new Intent(MainActivity.this, SettingsActivity.class));
     }
 
 }

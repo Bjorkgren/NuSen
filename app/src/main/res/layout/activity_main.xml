@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:id="@+id/main_layout"
     android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
@@ -46,7 +48,7 @@
                 android:fontFamily="@font/compact_vegverket"
                 android:layout_marginRight="20sp"
                 android:gravity="bottom"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:text="18:00" />
 
         </LinearLayout>
@@ -62,7 +64,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="8"
             android:layout_height="match_parent"
             android:gravity="center"
             android:fontFamily="@font/compact_vegverket"
@@ -70,8 +73,8 @@
             android:background="@drawable/veg_skylt"
             android:layout_marginTop="6sp"
             android:layout_marginBottom="6sp"
-            android:paddingLeft="0sp"
-            android:paddingRight="0sp"
+            android:paddingTop="4sp"
+            android:paddingBottom="4sp"
 
             android:id="@+id/skylt"
 
@@ -120,7 +123,7 @@
                 android:fontFamily="@font/compact_vegverket"
                 android:layout_marginRight="20sp"
                 android:gravity="top"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:text="20:00" />
 
         </LinearLayout>
@@ -128,5 +131,16 @@
     </LinearLayout>
 
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16sp"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+
+        android:onClick="showSettings"/>
 
 </android.support.constraint.ConstraintLayout>

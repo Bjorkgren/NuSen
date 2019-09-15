@@ -13,6 +13,9 @@ import com.google.gson.stream.JsonReader;
 import java.io.StringReader;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 public class PlacenameFromPositionTask extends AsyncTask<Location, Void, String> {
@@ -46,32 +49,30 @@ public class PlacenameFromPositionTask extends AsyncTask<Location, Void, String>
         if(null == ad)
             return "";
 
+        return Try(Arrays.asList(
+                ad.getSuburb(),
+                ad.getTown(),
+                ad.getNeighbourhood(),
+                ad.getRoad(),
+                ad.getCounty(),
+                ad.getState(),
+                ad.getCountry()
+                ));
+    }
 
-
-        if(!Empty(ad.getSuburb()))
-            return ad.getSuburb();
-        if(!Empty(ad.getTown()))
-            return ad.getTown();
-        if(!Empty(ad.getNeighbourhood()))
-            return ad.getNeighbourhood();
-        if(!Empty(ad.getRoad()))
-            return ad.getRoad();
-        if(!Empty(ad.getCounty()))
-            return ad.getCounty();
-
-        if(!Empty(ad.getState()))
-            return ad.getState();
-        if(!Empty(ad.getCountry()))
-            return ad.getCountry();
-
-        // annars footway, suburb
-
+    private String Try(List<String> list){
+        for(String s : list){
+            if(null != s && s.length() > 0)
+                return s;
+        }
         return "";
     }
 
     @Override
     protected void onPostExecute(String found) {
         // Download is done
+        // do string stuff
+        found = found.replace(" ", "\u00A0");
         if (null != found) {
             listener.onFound(found);
         } else {

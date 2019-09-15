@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ddd</color>
-    <color name="colorPrimaryDark">#ddd</color>
-    <color name="colorAccent">#002F6C</color>
+    <color name="colorPrimary">#eee</color>
+    <color name="colorPrimaryDark">#eee</color>
+    <color name="colorAccent">#005192</color>
     <color name="colorSkylt">#005192</color>
     <color name="colorVegverkGrey">#a0a5a8</color>
     <color name="colorVegverkGreen">#00755c</color>
     <color name="colorVegverkDarkblue">#041e42</color>
     <!-- c6ccd0 -->
     <!--      a0a5a8   #7c878e    -->
+    <color name="gradientSun">#FFF59D</color>
+    <color name="gradientRain">#B3E5FC</color>
+    <color name="gradientCloudy">#D5D5D5</color>
 </resources>
