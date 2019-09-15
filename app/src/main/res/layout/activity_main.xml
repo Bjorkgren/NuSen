@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="30sp"
-                android:textColor="#fff"
+                android:textColor="#333"
                 android:fontFamily="@font/compact_vegverket"
                 android:layout_marginLeft="20sp"
                 android:gravity="bottom"
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="30sp"
-                android:textColor="#fff"
+                android:textColor="#333"
                 android:fontFamily="@font/compact_vegverket"
                 android:layout_marginRight="20sp"
                 android:gravity="bottom"
@@ -56,23 +56,37 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:layout_margin="12sp"
-            android:background="#fff">
+            android:orientation="horizontal">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="left"
+            android:gravity="center"
             android:fontFamily="@font/compact_vegverket"
             android:textColor="#fff"
-            android:background="@color/colorSkylt"
-            android:layout_margin="5sp"
+            android:background="@drawable/veg_skylt"
+            android:layout_marginTop="6sp"
+            android:layout_marginBottom="6sp"
+            android:paddingLeft="0sp"
+            android:paddingRight="0sp"
+
+            android:id="@+id/skylt"
 
             app:autoSizeTextType="uniform"
             app:autoSizeMinTextSize="12sp"
             app:autoSizeMaxTextSize="100sp"
             app:autoSizeStepGranularity="2sp"
 
-            android:text=" NU" />
+            android:text="\u00A0ORTEN\u00A0" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
         </LinearLayout>
 
 
@@ -86,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="30sp"
-                android:textColor="#fff"
+                android:textColor="#333"
                 android:fontFamily="@font/compact_vegverket"
                 android:layout_marginLeft="20sp"
                 android:gravity="top"
@@ -102,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="30sp"
-                android:textColor="#fff"
+                android:textColor="#333"
                 android:fontFamily="@font/compact_vegverket"
                 android:layout_marginRight="20sp"
                 android:gravity="top"
