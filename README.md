@@ -11,6 +11,7 @@ Android app that displays local weather both now ("nu") and later ("sen").
 
 ### Providers
 (not affiliated)
+//TODO: Test if fmi and weather.gov return actual data, not just test data.
 * SMHI.se
 * YR.no
 * FMI.fi
