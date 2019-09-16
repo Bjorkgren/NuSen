@@ -24,6 +24,7 @@ Android app that displays local weather both now ("nu") and later ("sen").
 * WEATHER.gov
 
 ### General TODOS:
+* Save location name and location lat/lon to global variable, to keep from seraching on every onResume...
 * Remove settings, set active hours to 7-22.
 * Set interesting hours to 7, 12, 17, 22. 
  => Set the current hour to the value closest following.
