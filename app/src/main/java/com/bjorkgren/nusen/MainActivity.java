@@ -13,6 +13,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.os.Handler;
 import android.os.Looper;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout mainLayout;
     int colorSun, colorRain, colorCloudy;
     int colorPrimary;
+
+    boolean searching = false;
+    int dots = 0;
 
     @Override
     protected void onResume() {
@@ -107,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 Log.e("Location Changes", location.toString());
+                searching = false;
+
                 getPlacename(location);
             }
 
@@ -150,6 +157,40 @@ public class MainActivity extends AppCompatActivity {
 
     private void requestLocationOnce(){
         try {
+            searching = true;
+
+            final Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                private String strLetar = "\u00A0Söker";
+
+                public void run() {
+                    while (searching) {
+                        try {
+                            Thread.sleep(150);
+                        }
+                        catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        handler.post(new Runnable(){
+                            public void run() {
+                                if(searching){
+                                    dots++;
+                                    String strDots = "";
+                                    for(int i=0; i<(dots%4); i++){
+                                        strDots += ".";
+                                    }
+                                    skylt.setGravity(Gravity.LEFT);
+                                    skylt.setText(strLetar + strDots + "\u00A0");
+                                }
+
+                            }
+                        });
+                    }
+                }
+            };
+            new Thread(runnable).start();
+
+
             locationManager.requestSingleUpdate(criteria, locationListener, looper);
         }catch(SecurityException se){
             Toast.makeText(getApplicationContext(),
@@ -164,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFound(String p) {
                 skylt.setText("\u00A0" + p.toUpperCase() + "\u00A0");
+                skylt.setGravity(Gravity.CENTER);
                 //setWeatherSen(Weather.CLOUDY);
                 //preferences.edit().putString(PLACENAME_SAVED, p).apply();
             }
@@ -223,8 +265,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void showSettings(View v){
-        startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+    public void updatePositionAndTheRest(View v){
     }
 
 }

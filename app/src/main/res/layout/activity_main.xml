@@ -83,7 +83,7 @@
             app:autoSizeMaxTextSize="100sp"
             app:autoSizeStepGranularity="2sp"
 
-            android:text="\u00A0ORTEN\u00A0" />
+            android:text="Letar" />
 
             <View
                 android:layout_width="0dp"
@@ -130,7 +130,8 @@
 
     </LinearLayout>
 
-
+<!-- app:srcCompat="@android:drawable/ic_dialog_email" -->
+    <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div> -->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -139,8 +140,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_gravity="bottom|end"
         android:layout_margin="16sp"
-        app:srcCompat="@android:drawable/ic_dialog_email"
 
-        android:onClick="showSettings"/>
+        app:srcCompat="@drawable/refresh"
+
+        android:onClick="updatePositionAndTheRest"/>
 
 </android.support.constraint.ConstraintLayout>
