@@ -26,6 +26,6 @@ Android app that displays local weather both now ("nu") and later ("sen").
 ### General TODOS:
 * Remove settings, set active hours to 7-22.
 * Set interesting hours to 7, 12, 17, 22. 
- => Set the current hour to the value closest.
+ => Set the current hour to the value closest following.
  => Set the "sen" hour to the our after the chosen one above.
-* Ex: Time is 10, show 12 and 17. Time is 9, show 7 and 12. Time is 20, show 22 and 07 (next morn)
+* Ex: Time is 10, show 12 and 17. Time is 8, show 12 and 17. Time is 20, show 22 and 07 (next morn)
