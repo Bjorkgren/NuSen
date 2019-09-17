@@ -7,7 +7,7 @@ Android app that displays local weather both now ("Nu") and later ("Sen").
 
 ## Has
 
-* Fast boot.
+* Fast boot (finding location and querying weather-providers)
 * Fresh data.
 
 ### Providers
