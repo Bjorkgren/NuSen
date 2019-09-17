@@ -24,6 +24,7 @@ Android app that displays local weather both now ("nu") and later ("sen").
 * WEATHER.gov
 
 ### General TODOS:
+* move row 115 __searching = false;__  to row 207, above -> __skylt.setText("\u00A0" + p.toUpperCase() + "\u00A0");__
 * Save location name and location lat/lon to global variable, to keep from seraching on every onResume...
 * Remove settings, set active hours to 7-22.
 * Set interesting hours to 7, 12, 17, 22. 
