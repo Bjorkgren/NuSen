@@ -3,14 +3,12 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/Bjorkgren/NuSen)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Bjorkgren/NuSen) 
 
-Android app that displays local weather both now ("nu") and later ("sen").
+Android app that displays local weather both now ("Nu") and later ("Sen").
 
 ## Has
 
-* Fast boot, remembers location.
-* Updates weather every 30 min.
-* Can set later ("sen") to be between 1-6hrs.
-* Can set relevant times (ex. 7:00 - 22:00)
+* Fast boot.
+* Fresh data.
 
 ### Providers
 (not affiliated)
