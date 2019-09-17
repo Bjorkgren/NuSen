@@ -4,6 +4,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Bjorkgren/NuSen) 
 
 Android app that displays local weather both now ("Nu") and later ("Sen").
+Gathers data from multiple providers to show less guessy data. If one providers says "rain" and the others say "no rain" then the app says "no rain".
 
 ## Has..
 
