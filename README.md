@@ -5,10 +5,11 @@
 
 Android app that displays local weather both now ("Nu") and later ("Sen").
 
-## Has
+## Has..
 
-* Fast boot (finding location and querying weather-providers)
-* Fresh data.
+* ..fast boot (finding location and querying weather-providers).
+* ..fresh data.
+* ..a pretty street sign.
 
 ### Providers
 (not affiliated)
