@@ -7,7 +7,9 @@ Android app that displays local weather both now ("Nu") and later ("Sen").
 
 Gathers data from multiple providers to show less guessy data. 
 
-If one provider says "rain" and the others say "no rain" then the app says "no rain". If 2 providers say "sun", and one say "rain" and one say "clouds", then the app says "sun".
+If one provider says "rain" and the others say "no rain" then the app says "no rain". 
+
+If 2 providers say "sun", and one say "rain" and one say "clouds", then the app says "sun".
 
 ## Has..
 
