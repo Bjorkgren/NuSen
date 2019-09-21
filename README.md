@@ -31,4 +31,6 @@ If 2 providers say "sun", and one say "rain" and one say "clouds", then the app 
 ### General TODOS:
 * Add temp and weather graphics
 * Ask about weathers
-* When receiving weather, loop until now-hour and later-hour is found, then exit the loop.
+* Save temps in an array, easier to calc median then.
+* Do the same for weather-type-id, (generalize for providers first)
+* When receiving weather, first loop until now-hour and then continue loop to later-hour is found, then exit the loop.
