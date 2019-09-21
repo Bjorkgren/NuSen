@@ -9,6 +9,8 @@
     android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
+  <!-- add current weather box here... make it have weight 6 and the time gets weight 1 maybe... -->
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -129,6 +131,8 @@
                 android:text="20:00" />
 
         </LinearLayout>
+
+        <!-- add SEN weather box here... -->
 
     </LinearLayout>
 
