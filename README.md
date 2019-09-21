@@ -29,11 +29,6 @@ If 2 providers say "sun", and one say "rain" and one say "clouds", then the app 
 * WEATHER.gov
 
 ### General TODOS:
-* Move find-location-start-func to OnCreate, instead of OnResume
-* move row 115 __searching = false;__  to row 207, above -> __skylt.setText("\u00A0" + p.toUpperCase() + "\u00A0");__
-* Save location name and location lat/lon to global variable, to keep from seraching on every onResume...
-* Remove settings, set active hours to 7-22.
-* Set interesting hours to 7, 12, 17, 22. 
  => Set the current hour to the value closest following.
  => Set the "sen" hour to the our after the chosen one above.
 * Ex: Time is 10, show 12 and 17. Time is 8, show 12 and 17. Time is 20, show 22 and 07 (next morn)
