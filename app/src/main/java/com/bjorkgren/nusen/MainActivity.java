@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
         updateHours();
 
 
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -187,7 +188,24 @@ public class MainActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }else{
-            requestLocationOnce();
+            findLocation();
+        }
+    }
+
+    private void findLocation(){
+        try {
+            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (lastKnownLocation == null) {
+                lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+            }
+            if (lastKnownLocation != null && lastKnownLocation.getAccuracy() < 120) {
+                Log.e("last passive", "last passive is " + lastKnownLocation.getAccuracy());
+                getPlacename(lastKnownLocation);
+            } else {
+                requestLocationOnce();
+            }
+        }catch(SecurityException se){
+            Log.e("sec", se.getMessage());
         }
     }
 
@@ -297,14 +315,14 @@ public class MainActivity extends AppCompatActivity {
                         "Application will not run without location services!", Toast.LENGTH_SHORT).show();
             }
             else {
-                requestLocationOnce();
+                findLocation();
             }
         }
     }
 
     public void updatePositionAndTheRest(View v){
         updateHours();
-        requestLocationOnce();
+        findLocation();
     }
 
 }
