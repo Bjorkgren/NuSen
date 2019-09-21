@@ -29,6 +29,6 @@ If 2 providers say "sun", and one say "rain" and one say "clouds", then the app 
 * WEATHER.gov
 
 ### General TODOS:
- => Set the current hour to the value closest following.
- => Set the "sen" hour to the our after the chosen one above.
-* Ex: Time is 10, show 12 and 17. Time is 8, show 12 and 17. Time is 20, show 22 and 07 (next morn)
+* Add temp and weather graphics
+* Ask about weathers
+* When receiving weather, loop until now-hour and later-hour is found, then exit the loop.
