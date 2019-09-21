@@ -33,7 +33,10 @@ import com.bjorkgren.nusen.communication.PlacenameFromPositionTask;
 import com.bjorkgren.nusen.model.PlacenameListener;
 import com.bjorkgren.nusen.model.Weather;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 
@@ -294,17 +297,6 @@ public class MainActivity extends AppCompatActivity {
         gd.setCornerRadius(3f);
         mainLayout.setBackground(gd);
     }
-/*
-    private void updateSkyltSize(){
-        TextPaint textPaint = new TextPaint();
-        textPaint.setTextSize(skylt.getTextSize());
-
-        float width = textPaint.measureText((skylt.getText()).toString());
-
-        ViewGroup.LayoutParams layoutParams = skylt.getLayoutParams();
-        layoutParams.width = (int)width;
-        skylt.setLayoutParams(layoutParams);
-    } */
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -325,4 +317,17 @@ public class MainActivity extends AppCompatActivity {
         findLocation();
     }
 
+    private int getMedian(ArrayList<Float> list){
+        Collections.sort(list);
+        if(list.size() < 1)
+            return Integer.MIN_VALUE;
+        if(list.size() == 1)
+            return (int) (list.get(0) + 0.5d);
+
+        int size = list.size();
+        if (size % 2 == 0)
+            return (int)( list.get(size/2) + list.get(size/2 - 1) /2);
+        else
+            return (int) (list.get(size/2) + 0);
+    }
 }
