@@ -49,6 +49,7 @@
                 android:layout_marginRight="20sp"
                 android:gravity="bottom"
                 android:textStyle="normal"
+                android:id="@+id/txtNu"
                 android:text="18:00" />
 
         </LinearLayout>
@@ -124,6 +125,7 @@
                 android:layout_marginRight="20sp"
                 android:gravity="top"
                 android:textStyle="normal"
+                android:id="@+id/txtSen"
                 android:text="20:00" />
 
         </LinearLayout>

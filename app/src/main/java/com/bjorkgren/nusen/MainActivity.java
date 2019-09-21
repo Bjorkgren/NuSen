@@ -33,6 +33,8 @@ import com.bjorkgren.nusen.communication.PlacenameFromPositionTask;
 import com.bjorkgren.nusen.model.PlacenameListener;
 import com.bjorkgren.nusen.model.Weather;
 
+import java.util.Calendar;
+
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     Criteria criteria;
     LocationListener locationListener;
 
-    TextView skylt;
+    TextView skylt, txtNu, txtSen;
     ConstraintLayout mainLayout;
     int colorSun, colorRain, colorCloudy;
     int colorPrimary;
@@ -50,28 +52,42 @@ public class MainActivity extends AppCompatActivity {
     boolean searching = false;
     int dots = 0;
 
+    int[] hours = {7, 12, 17, 22};
+    int nuHour, senHour;
+
     @Override
     protected void onResume() {
         super.onResume();
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                    1);
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }else{
-            requestLocationOnce();
+
+    }
+
+    private void updateHours(){
+        Calendar rightNow = Calendar.getInstance();
+        int currentHourIn24Format = rightNow.get(Calendar.HOUR_OF_DAY); // return the hour in 24 hrs format (ranging from 0-23)
+
+        //Select closest wanted hour...
+        int diff = 6666;
+        int min_index = -1;
+        for(int i=0; i<4; i++){
+            int this_diff = Math.abs(currentHourIn24Format - hours[i]);
+            if(this_diff < diff){
+                diff = this_diff;
+                min_index = i;
+            }
         }
+        nuHour = hours[min_index];
+        senHour = hours[(min_index+1)%4];
+        txtNu.setText(ToHourStr(nuHour));
+        txtSen.setText(ToHourStr(senHour));
+    }
 
-
-
+    private String ToHourStr(int hour){
+        String ret = "";
+        if(hour < 10)
+            ret = "0";
+        ret += hour + ":00";
+        return ret;
     }
 
 
@@ -89,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
         colorPrimary = getResources().getColor(R.color.colorPrimary);
 
 
-
+        txtNu = findViewById(R.id.txtNu);
+        txtSen = findViewById(R.id.txtSen);
         skylt = findViewById(R.id.skylt);
         skylt.post(new Runnable() {
             @Override
@@ -112,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 Log.e("Location Changes", location.toString());
-                searching = false;
+
 
                 getPlacename(location);
             }
@@ -152,7 +169,24 @@ public class MainActivity extends AppCompatActivity {
         // This is the Best And IMPORTANT part
         //final Looper looper = null;
 
+        updateHours();
 
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    1);
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }else{
+            requestLocationOnce();
+        }
     }
 
     private void requestLocationOnce(){
@@ -204,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFound(String p) {
+                searching = false;
                 skylt.setText("\u00A0" + p.toUpperCase() + "\u00A0");
                 skylt.setGravity(Gravity.CENTER);
                 //setWeatherSen(Weather.CLOUDY);
