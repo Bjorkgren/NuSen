@@ -11,5 +11,5 @@
     <!--      a0a5a8   #7c878e    -->
     <color name="gradientSun">#FFF59D</color>
     <color name="gradientRain">#B3E5FC</color>
-    <color name="gradientCloudy">#D5D5D5</color>
+    <color name="gradientCloudy">#C5C5C5</color>
 </resources>

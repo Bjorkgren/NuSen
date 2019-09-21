@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         }
         nuHour = hours[min_index];
         senHour = hours[(min_index+1)%4];
+        if(currentHourIn24Format > nuHour)
+            nuHour = currentHourIn24Format;
         txtNu.setText(ToHourStr(nuHour));
         txtSen.setText(ToHourStr(senHour));
     }
@@ -301,6 +303,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updatePositionAndTheRest(View v){
+        updateHours();
+        requestLocationOnce();
     }
 
 }
