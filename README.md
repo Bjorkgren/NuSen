@@ -3,14 +3,19 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/Bjorkgren/NuSen)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Bjorkgren/NuSen) 
 
-Android app that displays local weather both now ("nu") and later ("sen").
+Android app that displays local weather both now ("Nu") and later ("Sen").
 
-## Has
+Gathers data from multiple providers to show less guessy data. 
 
-* Fast boot, remembers location.
-* Updates weather every 30 min.
-* Can set later ("sen") to be between 1-6hrs.
-* Can set relevant times (ex. 7:00 - 22:00)
+If one provider says "rain" and the others say "no rain" then the app says "no rain". 
+
+If 2 providers say "sun", and one say "rain" and one say "clouds", then the app says "sun".
+
+## Has..
+
+* ..fast boot (finding location and querying weather-providers).
+* ..fresh data.
+* ..a pretty street sign.
 
 ### Providers
 (not affiliated)
@@ -24,8 +29,6 @@ Android app that displays local weather both now ("nu") and later ("sen").
 * WEATHER.gov
 
 ### General TODOS:
-* Remove settings, set active hours to 7-22.
-* Set interesting hours to 7, 12, 17, 22. 
  => Set the current hour to the value closest following.
  => Set the "sen" hour to the our after the chosen one above.
 * Ex: Time is 10, show 12 and 17. Time is 8, show 12 and 17. Time is 20, show 22 and 07 (next morn)
