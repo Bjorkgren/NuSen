@@ -21,8 +21,36 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6"
-            android:background="#f00"></android.support.constraint.ConstraintLayout>
+            android:layout_weight="6">
+
+
+
+            <ImageView
+                android:layout_margin="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/clean_sol_2"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginRight="20sp"
+                android:textColor="#333"
+                android:textAlignment="textEnd"
+
+                android:fontFamily="@font/compact_vegverket"
+                android:textSize="90sp"
+                android:text="12"/>
+
+        </android.support.constraint.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -141,15 +169,29 @@
             android:layout_height="0dp"
             android:layout_weight="6">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="20sp"
+                android:textColor="#333"
+
+                android:fontFamily="@font/compact_vegverket"
+                android:textSize="90sp"
+                android:text="12"/>
+
             <ImageView
                 android:layout_margin="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:scaleType="fitStart"
+                android:scaleType="fitEnd"
                 android:src="@drawable/clean_mulet_2"
-                app:layout_constraintLeft_toLeftOf="parent"
+
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
 
         </android.support.constraint.ConstraintLayout>
 
@@ -172,6 +214,9 @@
 
 <!-- app:srcCompat="@android:drawable/ic_dialog_email" -->
     <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div> -->
+
+
+    <!--
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -184,5 +229,6 @@
         app:srcCompat="@drawable/refresh"
 
         android:onClick="updatePositionAndTheRest"/>
+        -->
 
 </android.support.constraint.ConstraintLayout>
