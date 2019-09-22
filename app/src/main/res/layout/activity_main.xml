@@ -9,8 +9,6 @@
     android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
-  <!-- add current weather box here... make it have weight 6 and the time gets weight 1 maybe... -->
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -20,10 +18,16 @@
         app:layout_constraintRight_toRightOf="parent"
         android:orientation="vertical">
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:background="#f00"></android.support.constraint.ConstraintLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView

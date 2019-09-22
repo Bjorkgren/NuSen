@@ -70,21 +70,24 @@ public class MainActivity extends AppCompatActivity {
         int currentHourIn24Format = rightNow.get(Calendar.HOUR_OF_DAY); // return the hour in 24 hrs format (ranging from 0-23)
 
         //Select closest wanted hour...
-        int diff = 6666;
-        int min_index = -1;
-        for(int i=0; i<4; i++){
-            int this_diff = Math.abs(currentHourIn24Format - hours[i]);
-            if(this_diff < diff){
-                diff = this_diff;
-                min_index = i;
+            int diff = 6666;
+            int min_index = -1;
+            for(int i=0; i<4; i++){
+                int this_diff = Math.abs(currentHourIn24Format - hours[i]);
+                if(this_diff < diff){
+                    diff = this_diff;
+                    min_index = i;
+                }
             }
-        }
-        nuHour = hours[min_index];
-        senHour = hours[(min_index+1)%4];
-        if(currentHourIn24Format > nuHour)
-            nuHour = currentHourIn24Format;
-        txtNu.setText(ToHourStr(nuHour));
-        txtSen.setText(ToHourStr(senHour));
+            nuHour = hours[min_index];
+            senHour = hours[(min_index+1)%4];
+
+            if(currentHourIn24Format > nuHour)
+                nuHour = currentHourIn24Format;
+
+            txtNu.setText(ToHourStr(nuHour));
+            txtSen.setText(ToHourStr(senHour));
+
     }
 
     private String ToHourStr(int hour){
