@@ -3,6 +3,6 @@ package com.bjorkgren.nusen.model;
 import java.util.List;
 
 public interface WeatherdataListener {
-    void onComplete(String s);
+    void onResult(int nowTemp, int laterTemp);
     void onError();
 }

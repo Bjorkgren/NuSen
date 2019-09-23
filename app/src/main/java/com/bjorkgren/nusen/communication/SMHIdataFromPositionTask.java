@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.bjorkgren.nusen.model.WeatherdataListener;
 
+import com.bjorkgren.nusen.model.json.smhi.Smhi;
+import com.bjorkgren.nusen.model.json.smhi.TimeSerie;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
@@ -17,12 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class WeatherdataFromPositionTask extends AsyncTask<Location, Void, String> {
+public class SMHIdataFromPositionTask extends AsyncTask<Location, Void, String> {
 
     private final WeatherdataListener listener;
     private int nowTemp, laterTemp;
 
-    public WeatherdataFromPositionTask(final WeatherdataListener listener){
+    public SMHIdataFromPositionTask(final WeatherdataListener listener){
         this.listener = listener;
     }
 
@@ -35,6 +37,26 @@ public class WeatherdataFromPositionTask extends AsyncTask<Location, Void, Strin
 
         nowTemp = 0;
         laterTemp = 0;
+
+        String sURL = "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/" + lon + "/lat/" + lat +"/data.json";
+        String contents = Helpers.getStringDataFromUrl(sURL);
+        Log.e("contents", contents);
+        //Gson gson = new Gson();
+        JsonReader reader = new JsonReader(new StringReader(contents));
+        //reader.setLenient(true);  <-- endast om det är ful json
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Smhi smhi = gson.fromJson(reader, Smhi.class);
+
+
+        for(TimeSerie ts : smhi.timeSeries) {
+            //Log.e("temp", "temp at " + ts.validTime + " is " + ts.getWeatherType() + ". Rain is " + ts.getRain() + ".  Rel day " + ts.getRelativeDay());
+            int hr = ts.getHourValue();
+            Log.e("from", "rel hour: " + hr + "  ; temp " + ts.getTemp());
+        }
+
+        //data.get(2).setHigh(10);
+        //data.get(2).setLow(5);
+        //data.get(2).setWeather(Weather.RAIN);
 
 
         return "x";

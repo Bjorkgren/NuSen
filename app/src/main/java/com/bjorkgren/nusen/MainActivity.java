@@ -30,13 +30,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bjorkgren.nusen.communication.PlacenameFromPositionTask;
+import com.bjorkgren.nusen.communication.SMHIdataFromPositionTask;
 import com.bjorkgren.nusen.model.PlacenameListener;
 import com.bjorkgren.nusen.model.Weather;
+import com.bjorkgren.nusen.model.WeatherdataListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     Criteria criteria;
     LocationListener locationListener;
 
-    TextView skylt, txtNu, txtSen;
+    TextView skylt, txtNu, txtSen, txtGraderNu, txtGraderSen;
     ConstraintLayout mainLayout;
     int colorSun, colorRain, colorCloudy;
     int colorPrimary;
@@ -112,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
         colorRain = getResources().getColor(R.color.gradientRain);
         colorPrimary = getResources().getColor(R.color.colorPrimary);
 
+        txtGraderNu = findViewById(R.id.txtDegNow);
+        txtGraderSen = findViewById(R.id.txtDegSen);
 
         txtNu = findViewById(R.id.txtNu);
         txtSen = findViewById(R.id.txtSen);
@@ -131,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mainLayout = findViewById(R.id.main_layout);
-        setWeatherSen(Weather.CLOUDY);
+        setWeatherSen();
 
         locationListener = new LocationListener() {
             @Override
@@ -204,8 +209,11 @@ public class MainActivity extends AppCompatActivity {
             if (lastKnownLocation == null) {
                 lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
             }
-            if (lastKnownLocation != null && lastKnownLocation.getAccuracy() < 120) {
-                Log.e("last passive", "last passive is " + lastKnownLocation.getAccuracy());
+            int maxSecondsOld = 60;
+            if (lastKnownLocation != null && ((new Date().getTime() - lastKnownLocation.getTime()) / 1000 < maxSecondsOld) && lastKnownLocation.getAccuracy() < 120) {
+                long diffSeconds = new Date().getTime() - lastKnownLocation.getTime();
+                diffSeconds /= 1000;
+                Log.e("last passive", "last passive at " + diffSeconds + " seconds ago");
                 getPlacename(lastKnownLocation);
             } else {
                 requestLocationOnce();
@@ -276,10 +284,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }).executeOnExecutor(THREAD_POOL_EXECUTOR, loc );
+
+
+        askSMHI(loc);
     }
 
-    private void setWeatherSen(Weather w){
-        int end;
+    private void setWeatherSen(){
+        /*int end;
         switch (w){
             case SUN:
                 end = colorSun;
@@ -292,8 +303,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             default:
                 return;
-        }
-        int colors[] = {colorPrimary, end};
+        }*/
+        int colors[] = {colorPrimary, colorCloudy};
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM, colors);
 
@@ -315,9 +326,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void updatePositionAndTheRest(View v){
-        updateHours();
-        findLocation();
+    private void askSMHI(Location loc){
+        new SMHIdataFromPositionTask(new WeatherdataListener() {
+            @Override
+            public void onResult(int nowTemp, int laterTemp) {
+                txtGraderNu.setText("" + nowTemp);
+                txtGraderSen.setText("" + laterTemp);
+            }
+
+            @Override
+            public void onError() {
+                Toast.makeText(MainActivity.this, "\u274C",
+                        Toast.LENGTH_LONG).show();
+            }
+        }).executeOnExecutor(THREAD_POOL_EXECUTOR, loc );
     }
 
     private int getMedian(ArrayList<Float> list){

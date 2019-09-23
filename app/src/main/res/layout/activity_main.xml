@@ -48,6 +48,7 @@
 
                 android:fontFamily="@font/compact_vegverket"
                 android:textSize="90sp"
+                android:id="@+id/txtDegNow"
                 android:text="12"/>
 
         </android.support.constraint.ConstraintLayout>
@@ -118,7 +119,7 @@
             app:autoSizeMaxTextSize="100sp"
             app:autoSizeStepGranularity="2sp"
 
-            android:text="Letar" />
+            android:text="Söker" />
 
             <View
                 android:layout_width="0dp"
@@ -180,6 +181,7 @@
 
                 android:fontFamily="@font/compact_vegverket"
                 android:textSize="90sp"
+                android:id="@+id/txtDegSen"
                 android:text="12"/>
 
             <ImageView
