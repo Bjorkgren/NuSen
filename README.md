@@ -29,8 +29,6 @@ If 2 providers say "sun", and one say "rain" and one say "clouds", then the app 
 * WEATHER.gov
 
 ### General TODOS:
-* 01:00 should have 22:00 and 07:00 as the times. Fix error with 23-00 switch.. 
-* Add temp and weather graphics
 * Ask about weathers
 * Save temps in an array, easier to calc median then.
 * Do the same for weather-type-id, (generalize for providers first)
