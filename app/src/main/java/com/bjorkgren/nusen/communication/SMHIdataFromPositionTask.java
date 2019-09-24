@@ -4,6 +4,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.bjorkgren.nusen.model.LocationAndTimes;
 import com.bjorkgren.nusen.model.WeatherdataListener;
 
 import com.bjorkgren.nusen.model.json.smhi.Smhi;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SMHIdataFromPositionTask extends AsyncTask<Location, Void, String> {
+public class SMHIdataFromPositionTask extends AsyncTask<LocationAndTimes, Void, String> {
 
     private final WeatherdataListener listener;
     private int nowTemp, laterTemp;
@@ -29,14 +30,14 @@ public class SMHIdataFromPositionTask extends AsyncTask<Location, Void, String> 
     }
 
     @Override
-    protected String doInBackground(Location... locations) {
-        Location loc = locations[0];
+    protected String doInBackground(LocationAndTimes... locationAndTimes) {
+        LocationAndTimes lats = locationAndTimes[0];
         DecimalFormat formatet = new DecimalFormat("#.0#####", DecimalFormatSymbols.getInstance( Locale.ENGLISH ));
-        String lat = formatet.format(loc.getLatitude());
-        String lon = formatet.format(loc.getLongitude());
+        String lat = formatet.format(lats.getLoc().getLatitude());
+        String lon = formatet.format(lats.getLoc().getLongitude());
 
-        nowTemp = 0;
-        laterTemp = 0;
+        nowTemp = -666;
+        laterTemp = -666;
 
         String sURL = "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/" + lon + "/lat/" + lat +"/data.json";
         String contents = Helpers.getStringDataFromUrl(sURL);
@@ -51,7 +52,11 @@ public class SMHIdataFromPositionTask extends AsyncTask<Location, Void, String> 
         for(TimeSerie ts : smhi.timeSeries) {
             //Log.e("temp", "temp at " + ts.validTime + " is " + ts.getWeatherType() + ". Rain is " + ts.getRain() + ".  Rel day " + ts.getRelativeDay());
             int hr = ts.getHourValue();
-            Log.e("from", "rel hour: " + hr + "  ; temp " + ts.getTemp());
+            if(lats.getNuHour() == hr && nowTemp == -666)
+                nowTemp = (int)(ts.getTemp() + 0.5f);
+            if(lats.getSenHour() == hr && laterTemp == -666)
+                laterTemp = (int)(ts.getTemp() + 0.5f);
+            //Log.e("from", "rel hour: " + hr + "  ; temp " + ts.getTemp());
         }
 
         //data.get(2).setHigh(10);

@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.bjorkgren.nusen.communication.PlacenameFromPositionTask;
 import com.bjorkgren.nusen.communication.SMHIdataFromPositionTask;
+import com.bjorkgren.nusen.model.LocationAndTimes;
 import com.bjorkgren.nusen.model.PlacenameListener;
 import com.bjorkgren.nusen.model.Weather;
 import com.bjorkgren.nusen.model.WeatherdataListener;
@@ -136,7 +137,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mainLayout = findViewById(R.id.main_layout);
-        setWeatherSen();
+        int colors[] = {colorPrimary, colorCloudy};
+        GradientDrawable gd = new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM, colors);
+
+        gd.setCornerRadius(3f);
+        mainLayout.setBackground(gd);
 
         locationListener = new LocationListener() {
             @Override
@@ -289,29 +295,6 @@ public class MainActivity extends AppCompatActivity {
         askSMHI(loc);
     }
 
-    private void setWeatherSen(){
-        /*int end;
-        switch (w){
-            case SUN:
-                end = colorSun;
-                break;
-            case RAIN:
-                end = colorRain;
-                break;
-            case CLOUDY:
-                end = colorCloudy;
-                break;
-            default:
-                return;
-        }*/
-        int colors[] = {colorPrimary, colorCloudy};
-        GradientDrawable gd = new GradientDrawable(
-                GradientDrawable.Orientation.TOP_BOTTOM, colors);
-
-        gd.setCornerRadius(3f);
-        mainLayout.setBackground(gd);
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -333,13 +316,10 @@ public class MainActivity extends AppCompatActivity {
                 txtGraderNu.setText("" + nowTemp);
                 txtGraderSen.setText("" + laterTemp);
             }
-
             @Override
             public void onError() {
-                Toast.makeText(MainActivity.this, "\u274C",
-                        Toast.LENGTH_LONG).show();
             }
-        }).executeOnExecutor(THREAD_POOL_EXECUTOR, loc );
+        }).executeOnExecutor(THREAD_POOL_EXECUTOR, new LocationAndTimes(loc, nuHour, senHour));
     }
 
     private int getMedian(ArrayList<Float> list){

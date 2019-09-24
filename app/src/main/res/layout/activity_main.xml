@@ -18,6 +18,48 @@
         app:layout_constraintRight_toRightOf="parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="30sp"
+                android:textColor="#333"
+                android:fontFamily="@font/compact_vegverket"
+                android:gravity="bottom"
+                android:textStyle="normal"
+                android:id="@+id/txtNu"
+                android:text="00:00" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
+            <!--
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="30sp"
+                            android:textColor="#333"
+                            android:fontFamily="@font/compact_vegverket"
+                            android:layout_marginRight="20sp"
+                            android:gravity="bottom"
+                            android:textStyle="normal"
+
+                            android:text=" " /> -->
+
+        </LinearLayout>
+
+
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -26,7 +68,7 @@
 
 
             <ImageView
-                android:layout_margin="25sp"
+                android:layout_margin="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:scaleType="fitStart"
@@ -49,45 +91,11 @@
                 android:fontFamily="@font/compact_vegverket"
                 android:textSize="90sp"
                 android:id="@+id/txtDegNow"
-                android:text="12"/>
+                android:text=" "/>
 
         </android.support.constraint.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="30sp"
-                android:textColor="#333"
-                android:fontFamily="@font/compact_vegverket"
-                android:layout_marginLeft="20sp"
-                android:gravity="bottom"
-                android:textStyle="normal"
-                android:text="NU" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="30sp"
-                android:textColor="#333"
-                android:fontFamily="@font/compact_vegverket"
-                android:layout_marginRight="20sp"
-                android:gravity="bottom"
-                android:textStyle="normal"
-                android:id="@+id/txtNu"
-                android:text="18:00" />
-
-        </LinearLayout>
 
 
         <LinearLayout
@@ -129,41 +137,7 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="30sp"
-                android:textColor="#333"
-                android:fontFamily="@font/compact_vegverket"
-                android:layout_marginLeft="20sp"
-                android:gravity="top"
-                android:textStyle="normal"
-                android:text="SEN" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="30sp"
-                android:textColor="#333"
-                android:fontFamily="@font/compact_vegverket"
-                android:layout_marginRight="20sp"
-                android:gravity="top"
-                android:textStyle="normal"
-                android:id="@+id/txtSen"
-                android:text="20:00" />
-
-        </LinearLayout>
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -182,7 +156,7 @@
                 android:fontFamily="@font/compact_vegverket"
                 android:textSize="90sp"
                 android:id="@+id/txtDegSen"
-                android:text="12"/>
+                android:text=" "/>
 
             <ImageView
                 android:layout_margin="15sp"
@@ -196,6 +170,46 @@
                 app:layout_constraintRight_toRightOf="parent"/>
 
         </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+            <!--
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="30sp"
+                            android:textColor="#333"
+                            android:fontFamily="@font/compact_vegverket"
+                            android:layout_marginLeft="20sp"
+                            android:gravity="top"
+                            android:textStyle="normal"
+                            android:text=" " />
+            -->
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="30sp"
+                android:textColor="#333"
+                android:fontFamily="@font/compact_vegverket"
+                android:gravity="top"
+                android:textStyle="normal"
+                android:id="@+id/txtSen"
+                android:text="00:00" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
 
         <!-- add SEN weather box here... -->
 
