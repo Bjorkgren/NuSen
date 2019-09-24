@@ -72,7 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:scaleType="fitStart"
-                android:src="@drawable/clean_sol_2"
+                android:src="@drawable/clean_rainbow"
+                android:id="@+id/imgNow"
 
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -117,8 +118,10 @@
             android:background="@drawable/veg_skylt"
             android:layout_marginTop="6sp"
             android:layout_marginBottom="6sp"
-            android:paddingTop="4sp"
-            android:paddingBottom="4sp"
+            android:paddingTop="6sp"
+            android:paddingBottom="6sp"
+            android:paddingLeft="6sp"
+            android:paddingRight="6sp"
 
             android:id="@+id/skylt"
 
@@ -163,7 +166,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:scaleType="fitEnd"
-                android:src="@drawable/clean_mulet_2"
+                android:src="@drawable/clean_compass"
+                android:id="@+id/imgLater"
 
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

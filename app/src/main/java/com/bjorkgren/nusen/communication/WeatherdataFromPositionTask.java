@@ -4,6 +4,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.bjorkgren.nusen.model.Weather;
 import com.bjorkgren.nusen.model.WeatherdataListener;
 
 import com.google.gson.Gson;
@@ -21,6 +22,7 @@ public class WeatherdataFromPositionTask extends AsyncTask<Location, Void, Strin
 
     private final WeatherdataListener listener;
     private int nowTemp, laterTemp;
+    private Weather wNow, wLater;
 
     public WeatherdataFromPositionTask(final WeatherdataListener listener){
         this.listener = listener;
@@ -33,8 +35,10 @@ public class WeatherdataFromPositionTask extends AsyncTask<Location, Void, Strin
         String lat = formatet.format(loc.getLatitude());
         String lon = formatet.format(loc.getLongitude());
 
-        nowTemp = 0;
-        laterTemp = 0;
+        nowTemp = -666;
+        laterTemp = -666;
+        wNow = Weather.HALVKLART;
+        wLater = Weather.REGN;
 
 
         return "x";
@@ -44,7 +48,7 @@ public class WeatherdataFromPositionTask extends AsyncTask<Location, Void, Strin
     protected void onPostExecute(String res) {
         // Download is done
         if (res.length() > 0) {
-            listener.onResult(nowTemp, laterTemp);
+            listener.onResult(nowTemp, laterTemp, wNow, wLater);
         } else {
             listener.onError();
         }

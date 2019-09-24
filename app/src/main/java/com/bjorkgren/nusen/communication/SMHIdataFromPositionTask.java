@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.bjorkgren.nusen.model.LocationAndTimes;
+import com.bjorkgren.nusen.model.Weather;
 import com.bjorkgren.nusen.model.WeatherdataListener;
 
 import com.bjorkgren.nusen.model.json.smhi.Smhi;
@@ -24,6 +25,7 @@ public class SMHIdataFromPositionTask extends AsyncTask<LocationAndTimes, Void, 
 
     private final WeatherdataListener listener;
     private int nowTemp, laterTemp;
+    private Weather wNow, wLater;
 
     public SMHIdataFromPositionTask(final WeatherdataListener listener){
         this.listener = listener;
@@ -38,6 +40,8 @@ public class SMHIdataFromPositionTask extends AsyncTask<LocationAndTimes, Void, 
 
         nowTemp = -666;
         laterTemp = -666;
+        wNow = Weather.HALVKLART;
+        wLater = Weather.REGN;
 
         String sURL = "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/" + lon + "/lat/" + lat +"/data.json";
         String contents = Helpers.getStringDataFromUrl(sURL);
@@ -71,7 +75,7 @@ public class SMHIdataFromPositionTask extends AsyncTask<LocationAndTimes, Void, 
     protected void onPostExecute(String res) {
         // Download is done
         if (res.length() > 0) {
-            listener.onResult(nowTemp, laterTemp);
+            listener.onResult(nowTemp, laterTemp, wNow, wLater);
         } else {
             listener.onError();
         }

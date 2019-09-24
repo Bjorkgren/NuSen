@@ -18,6 +18,7 @@ import android.os.Looper;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextPaint;
@@ -25,6 +26,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     Criteria criteria;
     LocationListener locationListener;
 
+    ImageView imgNow, imgLater;
     TextView skylt, txtNu, txtSen, txtGraderNu, txtGraderSen;
     ConstraintLayout mainLayout;
     int colorSun, colorRain, colorCloudy;
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
     int[] hours = {7, 12, 17, 22};
     int nuHour, senHour;
+
+    Drawable[] WEATHER_IMAGES;
 
     @Override
     protected void onResume() {
@@ -119,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
         txtGraderNu = findViewById(R.id.txtDegNow);
         txtGraderSen = findViewById(R.id.txtDegSen);
 
+        imgNow = findViewById(R.id.imgNow);
+        imgLater = findViewById(R.id.imgLater);
+
         txtNu = findViewById(R.id.txtNu);
         txtSen = findViewById(R.id.txtSen);
         skylt = findViewById(R.id.skylt);
@@ -143,6 +151,11 @@ public class MainActivity extends AppCompatActivity {
 
         gd.setCornerRadius(3f);
         mainLayout.setBackground(gd);
+
+        WEATHER_IMAGES = new Drawable[4];
+        int[] images = {R.drawable.clean_regn_2, R.drawable.clean_mulet_2, R.drawable.clean_halvklart_2, R.drawable.clean_sol_2};
+        for(int i=0; i<4; i++)
+            WEATHER_IMAGES[i] = ResourcesCompat.getDrawable(getResources(), images[i], null);
 
         locationListener = new LocationListener() {
             @Override
@@ -312,9 +325,11 @@ public class MainActivity extends AppCompatActivity {
     private void askSMHI(Location loc){
         new SMHIdataFromPositionTask(new WeatherdataListener() {
             @Override
-            public void onResult(int nowTemp, int laterTemp) {
+            public void onResult(int nowTemp, int laterTemp, Weather wNow, Weather wLater) {
                 txtGraderNu.setText("" + nowTemp);
                 txtGraderSen.setText("" + laterTemp);
+                imgNow.setImageDrawable(WEATHER_IMAGES[nuHour%4]);
+                imgLater.setImageDrawable(WEATHER_IMAGES[(nuHour+2)%4]);
             }
             @Override
             public void onError() {
