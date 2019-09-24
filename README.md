@@ -31,5 +31,8 @@ If 2 providers say "sun", and one say "rain" and one say "clouds", then the app 
 ### General TODOS:
 * Ask about weathers
 * Save temps in an array, easier to calc median then.
+
 * Do the same for weather-type-id, (generalize for providers first)
+* Rain is 1001, cloudy is 1002, halvklart is 1003 and sunny is 1004. Use an arraylist to get median value. 
+
 * When receiving weather, first loop until now-hour and then continue loop to later-hour is found, then exit the loop.
