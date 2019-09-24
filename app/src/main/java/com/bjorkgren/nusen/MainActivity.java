@@ -152,9 +152,9 @@ public class MainActivity extends AppCompatActivity {
         gd.setCornerRadius(3f);
         mainLayout.setBackground(gd);
 
-        WEATHER_IMAGES = new Drawable[4];
-        int[] images = {R.drawable.clean_regn_2, R.drawable.clean_mulet_2, R.drawable.clean_halvklart_2, R.drawable.clean_sol_2};
-        for(int i=0; i<4; i++)
+        WEATHER_IMAGES = new Drawable[5];
+        int[] images = {R.drawable.clean_regn_2, R.drawable.clean_mulet_2, R.drawable.clean_halvklart_2, R.drawable.clean_sol_2, R.drawable.clean_rainbow};
+        for(int i=0; i<5; i++)
             WEATHER_IMAGES[i] = ResourcesCompat.getDrawable(getResources(), images[i], null);
 
         locationListener = new LocationListener() {
@@ -328,8 +328,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResult(int nowTemp, int laterTemp, Weather wNow, Weather wLater) {
                 txtGraderNu.setText("" + nowTemp);
                 txtGraderSen.setText("" + laterTemp);
-                imgNow.setImageDrawable(WEATHER_IMAGES[nuHour%4]);
-                imgLater.setImageDrawable(WEATHER_IMAGES[(nuHour+2)%4]);
+                imgNow.setImageDrawable(WEATHER_IMAGES[4]);
+                imgLater.setImageDrawable(WEATHER_IMAGES[4]);
             }
             @Override
             public void onError() {

@@ -7,6 +7,8 @@
     <color name="colorVegverkGrey">#a0a5a8</color>
     <color name="colorVegverkGreen">#00755c</color>
     <color name="colorVegverkDarkblue">#041e42</color>
+    <color name="colorVegverkRed">#e4002b</color>
+    <color name="colorVegverkBrown">#693F23</color>
     <!-- c6ccd0 -->
     <!--      a0a5a8   #7c878e    -->
     <color name="gradientSun">#FFF59D</color>
